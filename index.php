@@ -14,14 +14,14 @@
         <h1 class="text-center">Lista de produtos</h1>
         <hr>
     </header>
-    <div class="container-fluid grid">
+    <div class="row">
         <?php
         require_once 'conexao.php';
         $sql = "select * from produtos order by id";
         $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
         while ($produto = $dados->fetch_assoc()) {
         ?>
-            <div class="card" style="width: 18rem;">
+             <div class="card col-2">
                 <img class="card-img-top" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
