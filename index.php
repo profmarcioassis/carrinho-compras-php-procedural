@@ -22,11 +22,12 @@
             $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
             while ($produto = $dados->fetch_assoc()) {
             ?>
-                <div class="card col-2 text-center m-2">
-                    <img class="card-img-top mx-auto d-block" style="height: auto; width: 150px;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                <div class="card col-3 text-center m-2">
+                    <img class="card-img-top mx-auto d-block" style="height: 140px; width: auto;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
-                        <p class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                        <h5 class="card-title h-20 p-2"><?php echo $produto['nome']; ?></h5>
+                        <p class="card-text h-25 p-2"><?php echo $produto['descricao']?></p>
+                        <h3 class="card-text h-25 p-2">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></h3>
                         <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
