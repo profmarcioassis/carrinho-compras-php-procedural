@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+}
+
+img{
+    width: 200px;
+    height: auto;
+}
+
+header h1{
+    background-color: rgb(52, 2, 98);
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
