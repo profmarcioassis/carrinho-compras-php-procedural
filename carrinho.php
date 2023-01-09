@@ -29,7 +29,7 @@ if (isset($_GET['acao'])) {
             foreach ($_POST['prod'] as $id => $qtd) {
                 //intval() verifica se o número vindo é um inteiro
                 //trim() remove o caracter indicado
-                $id = intval(trim($id, "'")); 
+                $id = intval(trim($id, "'"));
                 $qtd = intval($qtd);
                 if (!empty($qtd) || $qtd <> 0) {
                     $_SESSION['carrinho'][intval($id)] = $qtd;
@@ -49,7 +49,7 @@ if (isset($_GET['acao'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -86,7 +86,11 @@ if (isset($_GET['acao'])) {
                         if (count($_SESSION['carrinho']) == 0) {
                         ?>
                     <tr>
-                        <td colspan="5">Nenhum produto no carrinho.</td>
+                        <td colspan="5">
+                            <div class="alert alert-warning">
+                                Nenhum produto no carrinho.
+                            </div>
+                            </td>
                     </tr>
                     <?php
                         } else {
@@ -119,21 +123,21 @@ if (isset($_GET['acao'])) {
 
                     <?php
                             }
+
                     ?>
                     <tr>
                         <td colspan="4" style="text-align: right; font-weight: bold;">Total</td>
                         <td style="text-align: right; font-weight: bold;"><?php echo number_format($total, 2, ',', '.'); ?></td>
                     </tr>
                 <?php
+                            $_SESSION['total'] = $total;
                         }
-
-
                 ?>
             </table>
 
             <a class="btn btn-info" href="index.php">Continuar Comprando</a>
             <button class="btn btn-primary" type="submit">Atualizar Carrinho</button>
-            <a class="btn btn-success" href="index.php">Finalizar Pedido</a>
+            <a class="btn btn-success" href="finalizar.php">Finalizar Pedido</a>
 
         </form>
 

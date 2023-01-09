@@ -14,21 +14,26 @@
         <h1 class="text-center">Lista de produtos</h1>
         <hr>
     </header>
+    <div class="container-fluid grid">
+        <?php
+        require_once 'conexao.php';
+        $sql = "select * from produtos order by id";
+        $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
+        while ($produto = $dados->fetch_assoc()) {
+        ?>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
+                    <p class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                    <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>" class="btn btn-primary">Comprar</a>
+                </div>
+            </div>
 
-    <?php
-    require_once 'conexao.php';
-    $sql = "select * from produtos order by id";
-    $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
-    while ($produto = $dados->fetch_assoc()) {
-    ?>
-        <h3><?php echo $produto['nome']; ?></h3>
-        <h4>R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?><h4>
-                <img src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto"><br>
-                <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>">Comprar</a><br>
-                <hr>
-            <?php
+        <?php
         }
-            ?>
+        ?>
+    </div>
 </body>
 
 </html>
