@@ -19,6 +19,10 @@ function limparCarrinho()
 </head>
 
 <body>
+<header>
+        <h1 class="text-center">Finalizar pedido</h1>
+        <hr>
+    </header>
     <?php
     require_once("conexao.php");
 
