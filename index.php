@@ -10,29 +10,31 @@
 </head>
 
 <body>
-    <header>
-        <h1 class="text-center">Lista de produtos cadastrados</h1>
-        <hr>
-    </header>
-    <div class="row">
-        <?php
-        require_once 'conexao.php';
-        $sql = "SELECT * FROM produtos ORDER BY id";
-        $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
-        while ($produto = $dados->fetch_assoc()) {
-        ?>
-             <div class="card col-2">
-                <img class="card-img-top" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
-                    <p class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
-                    <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>" class="btn btn-primary">Comprar</a>
+    <div class="container m-5 mx-auto">
+        <header>
+            <h1 class="text-center">Lista de produtos cadastrados</h1>
+            <hr>
+        </header>
+        <div class="row">
+            <?php
+            require_once 'conexao.php';
+            $sql = "SELECT * FROM produtos ORDER BY id";
+            $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
+            while ($produto = $dados->fetch_assoc()) {
+            ?>
+                <div class="card col-2 text-center m-2">
+                    <img class="card-img-top mx-auto d-block" style="height: auto; width: 150px;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
+                        <p class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                        <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>" class="btn btn-primary">Comprar</a>
+                    </div>
                 </div>
-            </div>
 
-        <?php
-        }
-        ?>
+            <?php
+            }
+            ?>
+        </div>
     </div>
 </body>
 
