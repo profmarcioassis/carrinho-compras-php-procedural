@@ -21,8 +21,11 @@ function limparCarrinho()
 <body>
     <div class="container">
         <header>
-            <h1 class="text-center">Finalizar pedido</h1>
-            <hr>
+        <div class="card mt-5 text-center">
+            <div class="card-body">
+                <h3 class="card-title">Finalização de compra</h3>
+            </div>
+        </div>
         </header>
 
         <?php
@@ -39,12 +42,12 @@ function limparCarrinho()
                     $conn->query("$sqlInserirItensVenda");
                 }
         ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success mt-3" role="alert" >
                     Venda realizada com sucesso!
                     <a href="index.php" class="btn btn-primary">Continuar comprando...</a>
                 </div>
                 <h2>Resumo do pedido</h2>
-                <table class="table table-strip">
+                <table class="table table-strip mt-3">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -117,7 +120,7 @@ function limparCarrinho()
             limparCarrinho();
         } else {
             ?>
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-warning mt-3" role="alert">
                 Nenhum item foi escolhido para compra!
                 <a href="index.php" class="btn btn-primary">Continuar comprando...</a>
             </div>

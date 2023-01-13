@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de compras procedural</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div class="container m-5 mx-auto">
+    <div class="container m-3 mx-auto">
         <header>
-            <h1 class="text-center">Lista de produtos cadastrados</h1>
-            <hr>
+            <div class="card mt-5">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Produtos disponíveis</h3>
+                </div>
+            </div>
         </header>
         <div class="row">
             <?php
@@ -22,25 +26,27 @@
             $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
             while ($produto = $dados->fetch_assoc()) {
             ?>
-                <div class="card text-center m-2" style="width: 250px;">
-                    <img class="card-img-top mx-auto" style="height: auto; width: 240px;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                <div class="card text-center m-3" style="width: 250px;">
+                    <div class="imagem">
+                        <img class="card-img-top mx-auto" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title"><?php echo $produto['nome']; ?></h4>
-                        <p class="card-text"><?php echo $produto['descricao'];?></p>
-                        <?php 
+                        <p class="card-text descricao"><?php echo $produto['descricao']; ?></p>
+                        <?php
                         if ($produto['oferta'] > 0) {
-                           ?>
-                                <h6 class="card-text"><del>R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?><del></h6>
-                                <?php 
-                                    $precoOferta = $produto['preco'] - $produto['preco'] * ($produto['oferta'] / 100); 
-                                ?>
-                                <h3 class="card-text">R$<?php echo number_format($precoOferta, 2, ',', '.'); ?></h3>
-                                <p>no PIX <span style="color: green;">(<?php echo $produto['oferta'] ?>% de desconto)</span></p>
-                           <?php
-                        }else{
-                            ?>
-                                <h3 class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></h3>
+                        ?>
+                            <h6 class="card-text"><del>R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?><del></h6>
                             <?php
+                            $precoOferta = $produto['preco'] - $produto['preco'] * ($produto['oferta'] / 100);
+                            ?>
+                            <h3 class="card-text">R$<?php echo number_format($precoOferta, 2, ',', '.'); ?></h3>
+                            <p>no PIX <span style="color: green;">(<?php echo $produto['oferta'] ?>% de desconto)</span></p>
+                        <?php
+                        } else {
+                        ?>
+                            <h3 class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></h3>
+                        <?php
                         }
                         ?>
 
