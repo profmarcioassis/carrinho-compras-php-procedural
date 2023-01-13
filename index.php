@@ -22,11 +22,28 @@
             $dados = $conn->query($sql) or die("Erro ao executar comando: " . mysqli_error($conn));
             while ($produto = $dados->fetch_assoc()) {
             ?>
-                <div class="card col-2 text-center m-2">
-                    <img class="card-img-top mx-auto d-block" style="height: auto; width: 150px;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
+                <div class="card text-center m-2" style="width: 250px;">
+                    <img class="card-img-top mx-auto" style="height: auto; width: 240px;" src="imagens/<?php echo $produto['imagem'] ?>" alt="Imagem do produto">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
-                        <p class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                        <h4 class="card-title"><?php echo $produto['nome']; ?></h4>
+                        <p class="card-text"><?php echo $produto['descricao'];?></p>
+                        <?php 
+                        if ($produto['oferta'] > 0) {
+                           ?>
+                                <h6 class="card-text"><del>R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?><del></h6>
+                                <?php 
+                                    $precoOferta = $produto['preco'] - $produto['preco'] * ($produto['oferta'] / 100); 
+                                ?>
+                                <h3 class="card-text">R$<?php echo number_format($precoOferta, 2, ',', '.'); ?></h3>
+                                <p>no PIX <span style="color: green;">(<?php echo $produto['oferta'] ?>% de desconto)</span></p>
+                           <?php
+                        }else{
+                            ?>
+                                <h3 class="card-text">R$<?php echo number_format($produto['preco'], 2, ',', '.'); ?></h3>
+                            <?php
+                        }
+                        ?>
+
                         <a href="carrinho.php?acao=add&id=<?php echo $produto['id'] ?>" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>

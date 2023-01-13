@@ -102,6 +102,7 @@ if (isset($_GET['acao'])) {
                                 $preco      = number_format($produto['preco'], 2, ',', '.');
                                 $sub        = number_format($produto['preco'] * $qtd, 2, ',', '.');
                                 $total      += floatval(str_replace('.', '', $sub));
+                                
                     ?>
                         <tr>
                             <td><?php echo $id; ?></td>
