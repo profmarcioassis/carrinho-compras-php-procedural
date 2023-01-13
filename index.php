@@ -15,7 +15,7 @@
         <header>
             <div class="card mt-5">
                 <div class="card-body text-center">
-                    <h3 class="card-title">Produtos disponíveis</h3>
+                    <h3 class="card-title">Lista de Produtos Disponíveis</h3>
                 </div>
             </div>
         </header>
