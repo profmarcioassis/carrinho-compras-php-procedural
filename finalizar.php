@@ -44,7 +44,7 @@ function limparCarrinho()
         ?>
                 <div class="alert alert-success mt-3" role="alert" >
                     Venda realizada com sucesso!
-                    <a href="index.php" class="btn btn-primary">Continuar comprando...</a>
+                    <a href="produtos.php" class="btn btn-primary">Continuar comprando...</a>
                 </div>
                 <h2>Resumo do pedido</h2>
                 <table class="table table-strip mt-3">
@@ -122,7 +122,7 @@ function limparCarrinho()
             ?>
             <div class="alert alert-warning mt-3" role="alert">
                 Nenhum item foi escolhido para compra!
-                <a href="index.php" class="btn btn-primary">Continuar comprando...</a>
+                <a href="produtos.php" class="btn btn-primary">Continuar comprando...</a>
             </div>
         <?php
         }
