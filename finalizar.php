@@ -15,17 +15,18 @@ function limparCarrinho()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finalizar pedido</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body>
     <div class="container">
         <header>
-        <div class="card mt-5 text-center">
-            <div class="card-body">
-                <h3 class="card-title">Finalização de compra</h3>
+            <div class="card mt-5 text-center">
+                <div class="card-body">
+                    <h3 class="card-title">Finalização de compra</h3>
+                </div>
             </div>
-        </div>
         </header>
 
         <?php
@@ -34,7 +35,7 @@ function limparCarrinho()
         if (isset($_SESSION['carrinho']) && isset($_SESSION['total'])) {
             if (is_numeric($_SESSION['total'])) {
                 $valorVenda = $_SESSION['total'];
-                $sqlInserirVenda = "INSERT INTO venda (valor) VALUES ($valorVenda)";
+                $sqlInserirVenda = "INSERT INTO vendas (valor) VALUES ($valorVenda)";
                 $conn->query("$sqlInserirVenda");
                 $idVenda = $conn->insert_id; //pegando o id da última venda realizada
                 foreach ($_SESSION['carrinho'] as $id => $qtd) {
@@ -42,9 +43,11 @@ function limparCarrinho()
                     $conn->query("$sqlInserirItensVenda");
                 }
         ?>
-                <div class="alert alert-success mt-3" role="alert" >
+                <div class="alert alert-success mt-3" role="alert">
                     Venda realizada com sucesso!
-                    <a href="produtos.php" class="btn btn-primary">Continuar comprando...</a>
+                    <a href="produtos.php" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+</svg>&nbsp;Continuar comprando...</a>
                 </div>
                 <h2>Resumo do pedido</h2>
                 <table class="table table-strip mt-3">
@@ -130,8 +133,7 @@ function limparCarrinho()
 
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
